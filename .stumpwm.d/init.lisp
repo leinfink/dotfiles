@@ -9,7 +9,7 @@
 (setf *mouse-focus-policy* :click)
 
 (define-remapped-keys
-    '(("(firefox|Chrome)" 
+    '(("(firefox|Chromium)" 
        ("C-n"   . "Down")
        ("C-p"   . "Up")
        ("C-f"   . "Right")
