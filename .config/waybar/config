@@ -1,3 +1,4 @@
+
 {
     // "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
@@ -5,25 +6,25 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["idle_inhibitor"],
     "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "sway/language", "battery", "clock", "tray"], //, "idle_inhibitor"],
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}", //: {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+             "default": ""
+        }
+    },
     "keyboard-state": {
         "numlock": false,
         "capslock": true,
@@ -34,7 +35,7 @@
         }
     },
     "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+        "format": " {}"
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
@@ -74,7 +75,7 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
+        //"timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
