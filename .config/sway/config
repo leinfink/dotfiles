@@ -182,12 +182,26 @@ titlebar_padding 0
 
 # redshift
 exec /usr/lib/geoclue-2.0/demos/agent
-exec gammastep-indicator
+exec gammastep
 
 # notifications
 exec mako
 
 # duh
-exec emacs
+
+
+assign [app_id="emacs"] 1
+assign [app_id="firefox"] 2
+
+bindsym $mod+m exec ~/.local/bin/launch-emacs
+bindsym $mod+Shift+m exec emacsclient -a "" -c
+
+bindsym $mod+Shift+f exec firefox; workspace number 2
+
+bindsym $mod+Tab workspace back_and_forth
+
+
+exec emacsclient -a "" -c
+
 
 include /etc/sway/config.d/*

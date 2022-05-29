@@ -1,0 +1,33 @@
+#!/bin/bash
+# ~/launch-emacs
+
+# adapted from https://curiouscoding.nl/2021/07/01/sway-window-switching/
+
+FOCUS='[app_id="emacs"]'
+
+focus() {
+    swaymsg "$FOCUS focus" >/dev/null
+}
+open_or_run() {
+    if pgrep -fa "emacsclient" >/dev/null; then
+        focus
+    else
+        # start new client, but dont wait for it (just go on)
+	emacsclient -a "" -c >/dev/null 2>/dev/null &
+    fi
+}
+focus_wait() {
+    # For applications that are slow to start,
+    # we try every 0.1s until ther window is open.
+    for i in {1..30}; do
+        if focus; then
+            break
+        fi
+        sleep 0.1
+    done
+}
+
+focus || (
+    open_or_run
+    focus_wait
+)

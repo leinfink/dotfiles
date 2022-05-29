@@ -6,9 +6,9 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": ["idle_inhibitor"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "sway/language", "battery", "clock", "tray"], //, "idle_inhibitor"],
+    "modules-left": ["sway/workspaces", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "sway/language","network", "battery"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -71,8 +71,9 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
-        "spacing": 10
+         //"icon-size": 5,
+        "spacing": 10,
+        "show_passive_items": true
     },
     "clock": {
         //"timezone": "America/New_York",
