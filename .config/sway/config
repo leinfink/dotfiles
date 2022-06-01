@@ -21,6 +21,11 @@ set $menu bemenu-run --no-exec | xargs swaymsg exec --
 
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
+output HDMI-A-1 pos 0 0
+output DP-1 pos 1920 0
+output DP-1 scale 2
+
+
 exec swayidle -w \
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
