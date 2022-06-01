@@ -5,26 +5,43 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+# if root, don't do anything
+[[ "$(whoami)" = "root" ]] && return
+
+# text at begining of a line
 PS1='[\u@\h \W]\$ '
 
+alias ls='ls --color=auto'
+alias la='ls -lav --ignore=..'   # show long listing
+alias l='ls -lav --ignore=.?*'   # show long listing but no hidden dotfiles
+
+alias shut0='shutdown 0'
+
+# limit recursive functions
+[[ -z "$FUNCNEST" ]] && export FUNCNEST=1000
+
+## Use the up and down arrow keys for finding a command in history
+## (you can write some initial letters of the command first).
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
+
+# enable pkgfile lookup of packages when a command is not available
 source /usr/share/doc/pkgfile/command-not-found.bash
 
-### custom commands and aliases ###
+# emacs
+export EDITOR='emacsclient -a "" -c'
+alias ec='emacsclient -nw -a "emacs -nw -a nano"'
+alias ecd='emacs --daemon'
 
-workon() {
-    source $HOME/.virtualenvs/"$1"/bin/activate
-    cd $HOME/Dokumente/Programming/"$1"/
+# for vterm in emacs
+vterm_printf(){
+    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+        # Tell tmux to pass the escape sequences through
+        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+    elif [ "${TERM%%-*}" = "screen" ]; then
+        # GNU screen (screen, screen-256color, screen-256color-bce)
+        printf "\eP\e]%s\007\e\\" "$1"
+    else
+        printf "\e]%s\e\\" "$1"
+    fi
 }
-
-alias django-run='python manage.py runserver --settings=config.settings.local'
-alias django-run-testing='python manage.py runserver --settings=config.settings.testing'
-
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-source /usr/share/bash-completion/completions/git
-__git_complete g __git_main
-
-### end custom commands ###
-
-# Node Version Manager NVM
-source /usr/share/nvm/init-nvm.sh
