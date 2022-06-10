@@ -206,8 +206,8 @@ bindsym $mod+Shift+f exec firefox; workspace number 2
 
 bindsym $mod+Tab workspace back_and_forth
 
-
 exec emacsclient -a "" -c
 
+exec nextcloud --background
 
 include /etc/sway/config.d/*

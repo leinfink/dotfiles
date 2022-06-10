@@ -8,6 +8,11 @@
 # if root, don't do anything
 [[ "$(whoami)" = "root" ]] && return
 
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
 # text at begining of a line
 PS1='[\u@\h \W]\$ '
 
